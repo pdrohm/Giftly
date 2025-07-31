@@ -29,7 +29,7 @@ export const MyCardsScreen: React.FC = () => {
     () => (
       <View style={styles.emptyState}>
         <Icon
-          name="credit-card"
+          name="card-giftcard"
           size={64}
           color={theme.colors.textSecondary}
           style={styles.emptyIcon}

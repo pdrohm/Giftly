@@ -19,4 +19,10 @@ class MainActivity : ReactActivity() {
    */
   override fun createReactActivityDelegate(): ReactActivityDelegate =
       DefaultReactActivityDelegate(this, mainComponentName, fabricEnabled)
+
+  override fun onCreate(savedInstanceState: android.os.Bundle?) {
+    super.onCreate(savedInstanceState)
+    // Set the theme back to AppTheme after the launch screen
+    setTheme(com.giftly.app.R.style.AppTheme)
+  }
 }
