@@ -1,59 +1,50 @@
-import React, { useCallback, useMemo } from 'react';
-import {
-  View,
-  Text,
-  FlatList,
-  StyleSheet,
-} from 'react-native';
+import React, { useCallback } from 'react';
+import { View, Text, FlatList, StyleSheet } from 'react-native';
 import { ScreenContainer } from '../../../components/ui/ScreenContainer';
 import { CardItem } from '../components/CardItem';
 import { Icon } from '../../../components/ui/Icon';
 import { useMyCardsScreen } from '../hooks/useMyCardsScreen';
 import { useTheme } from '../../../hooks/useTheme';
-import { GiftCard } from '../../../store/slices/cardsSlice';
-import { formatCurrency } from '../../../utils/formatters';
-
-
-
-const ITEM_HEIGHT = 120;
 
 export const MyCardsScreen: React.FC = () => {
   const theme = useTheme();
-  const { cards, totalValue, handleCardPress } = useMyCardsScreen();
+  const {
+    cards,
+    formattedTotalValue,
+    renderCard,
+    keyExtractor,
+    getItemLayout,
+  } = useMyCardsScreen();
 
-  const formattedTotalValue = useMemo(() => formatCurrency(totalValue), [totalValue]);
+  const renderCardItem = useCallback(
+    ({ item }: { item: any }) => {
+      const { card, onPress } = renderCard({ item });
+      return <CardItem card={card} onPress={onPress} />;
+    },
+    [renderCard],
+  );
 
-  const renderCard = useCallback(({ item }: { item: GiftCard }) => (
-    <CardItem
-      card={item}
-      onPress={() => handleCardPress(item.id)}
-    />
-  ), [handleCardPress]);
-
-  const keyExtractor = useCallback((item: GiftCard) => item.id, []);
-
-  const getItemLayout = useCallback((data: ArrayLike<GiftCard> | null | undefined, index: number) => ({
-    length: ITEM_HEIGHT,
-    offset: ITEM_HEIGHT * index,
-    index,
-  }), []);
-
-  const renderEmptyState = useCallback(() => (
-    <View style={styles.emptyState}>
-      <Icon 
-        name="credit-card" 
-        size={64} 
-        color={theme.colors.textSecondary} 
-        style={styles.emptyIcon}
-      />
-      <Text style={[styles.emptyTitle, { color: theme.colors.text }]}>
-        No gift cards yet
-      </Text>
-      <Text style={[styles.emptySubtitle, { color: theme.colors.textSecondary }]}>
-        Add your first gift card to get started
-      </Text>
-    </View>
-  ), [theme.colors.text, theme.colors.textSecondary]);
+  const renderEmptyState = useCallback(
+    () => (
+      <View style={styles.emptyState}>
+        <Icon
+          name="credit-card"
+          size={64}
+          color={theme.colors.textSecondary}
+          style={styles.emptyIcon}
+        />
+        <Text style={[styles.emptyTitle, { color: theme.colors.text }]}>
+          No gift cards yet
+        </Text>
+        <Text
+          style={[styles.emptySubtitle, { color: theme.colors.textSecondary }]}
+        >
+          Add your first gift card to get started
+        </Text>
+      </View>
+    ),
+    [theme.colors.text, theme.colors.textSecondary],
+  );
 
   return (
     <ScreenContainer>
@@ -68,7 +59,7 @@ export const MyCardsScreen: React.FC = () => {
 
       <FlatList
         data={cards}
-        renderItem={renderCard}
+        renderItem={renderCardItem}
         keyExtractor={keyExtractor}
         getItemLayout={getItemLayout}
         showsVerticalScrollIndicator={false}
@@ -122,4 +113,4 @@ const styles = StyleSheet.create({
   emptyIcon: {
     marginBottom: 16,
   },
-}); 
+});

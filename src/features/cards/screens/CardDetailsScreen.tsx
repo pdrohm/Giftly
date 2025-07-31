@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-} from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import { ScreenContainer } from '../../../components/ui/ScreenContainer';
 import { Button } from '../../../components/ui/Button';
 import { BarcodeComponent } from '../components/Barcode';
@@ -12,9 +8,8 @@ import { useTheme } from '../../../hooks/useTheme';
 
 export const CardDetailsScreen: React.FC = () => {
   const theme = useTheme();
-  const { card, formatCurrency, formatDate, formatISODate, handleDeletePress } = useCardDetailsScreen();
-
-
+  const { card, formatCurrency, formatDate, formatISODate, handleDeletePress } =
+    useCardDetailsScreen();
 
   if (!card) {
     return (
@@ -31,9 +26,15 @@ export const CardDetailsScreen: React.FC = () => {
   return (
     <ScreenContainer>
       <View style={styles.container}>
-      
-        
-        <View style={[styles.card, { backgroundColor: theme.colors.card, borderColor: theme.colors.border }]}>
+        <View
+          style={[
+            styles.card,
+            {
+              backgroundColor: theme.colors.card,
+              borderColor: theme.colors.border,
+            },
+          ]}
+        >
           <View style={styles.header}>
             <Text style={[styles.brand, { color: theme.colors.text }]}>
               {card.brand}
@@ -80,11 +81,10 @@ export const CardDetailsScreen: React.FC = () => {
               {formatISODate(card.createdAt)}
             </Text>
           </View>
-
         </View>
-        <BarcodeComponent 
-          value={card.id} 
-          width={300} 
+        <BarcodeComponent
+          value={card.id}
+          width={300}
           height={100}
           style={styles.barcode}
         />
@@ -157,4 +157,4 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: '500',
   },
-}); 
+});

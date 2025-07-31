@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-} from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import { Controller } from 'react-hook-form';
 import { ScreenContainer } from '../../../components/ui/ScreenContainer';
 import { Input } from '../../../components/ui/Input';
@@ -21,10 +17,10 @@ export const AddCardScreen: React.FC = () => {
     <ScreenContainer scrollable>
       <View style={styles.container}>
         <View style={styles.header}>
-          <Icon 
-            name="add-card" 
-            size={32} 
-            color={theme.colors.primary} 
+          <Icon
+            name="add-card"
+            size={32}
+            color={theme.colors.primary}
             style={styles.headerIcon}
           />
           <Text style={[styles.title, { color: theme.colors.text }]}>
@@ -121,4 +117,4 @@ const styles = StyleSheet.create({
   submitButton: {
     marginTop: 24,
   },
-}); 
+});
