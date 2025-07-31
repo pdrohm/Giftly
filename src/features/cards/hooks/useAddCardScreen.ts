@@ -12,7 +12,19 @@ const addCardSchema = z.object({
     const num = parseFloat(val);
     return !isNaN(num) && num > 0;
   }, 'Amount must be a positive number'),
-  expirationDate: z.string().min(1, 'Expiration date is required'),
+  expirationDate: z.string().min(1, 'Expiration date is required').refine((val) => {
+    const dateRegex = /^(0[1-9]|1[0-2])\/(0[1-9]|[12]\d|3[01])\/\d{4}$/;
+    if (!dateRegex.test(val)) {
+      return false;
+    }
+    
+    const [month, day, year] = val.split('/').map(Number);
+    const date = new Date(year, month - 1, day);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    
+    return date >= today;
+  }, 'Please enter a valid future date in MM/DD/YYYY format'),
 });
 
 type AddCardFormData = z.infer<typeof addCardSchema>;

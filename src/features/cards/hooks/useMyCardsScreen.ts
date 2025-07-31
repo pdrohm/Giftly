@@ -15,7 +15,6 @@ export const useMyCardsScreen = () => {
     navigation.navigate('CardDetails', { cardId });
   }, [navigation]);
 
-  // Memoize the total value calculation
   const totalValue = useMemo(() => 
     cards.reduce((sum: number, card: GiftCard) => sum + card.amount, 0), 
     [cards]

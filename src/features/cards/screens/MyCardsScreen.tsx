@@ -11,26 +11,18 @@ import { Icon } from '../../../components/ui/Icon';
 import { useMyCardsScreen } from '../hooks/useMyCardsScreen';
 import { useTheme } from '../../../hooks/useTheme';
 import { GiftCard } from '../../../store/slices/cardsSlice';
+import { formatCurrency } from '../../../utils/formatters';
 
-// Extract formatting function outside component
-const formatCurrency = (amount: number) => {
-  return new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-  }).format(amount);
-};
 
-// Calculate item height for getItemLayout optimization
-const ITEM_HEIGHT = 120; // card height + marginBottom
+
+const ITEM_HEIGHT = 120;
 
 export const MyCardsScreen: React.FC = () => {
   const theme = useTheme();
   const { cards, totalValue, handleCardPress } = useMyCardsScreen();
 
-  // Memoize the formatted total value
   const formattedTotalValue = useMemo(() => formatCurrency(totalValue), [totalValue]);
 
-  // Memoize the renderItem function
   const renderCard = useCallback(({ item }: { item: GiftCard }) => (
     <CardItem
       card={item}
@@ -82,15 +74,12 @@ export const MyCardsScreen: React.FC = () => {
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.listContainer}
         ListEmptyComponent={renderEmptyState}
-        // Performance optimizations
         removeClippedSubviews={true}
         initialNumToRender={5}
         maxToRenderPerBatch={5}
         windowSize={10}
         updateCellsBatchingPeriod={50}
-        // Disable scroll performance optimizations for better UX
         scrollEventThrottle={16}
-        // Memory optimization
         maintainVisibleContentPosition={{
           minIndexForVisible: 0,
         }}

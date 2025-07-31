@@ -7,6 +7,7 @@ import { RouteProp } from '@react-navigation/native';
 import { RootStackParamList } from '../../../navigation/types';
 import { GiftCard } from '../../../store/slices/cardsSlice';
 import { Alert } from 'react-native';
+import { formatCurrency, formatDateLong, formatISODate } from '../../../utils/formatters';
 
 type CardDetailsRouteProp = RouteProp<RootStackParamList, 'CardDetails'>;
 
@@ -26,21 +27,7 @@ export const useCardDetailsScreen = () => {
     }
   }, [card, dispatch, navigation]);
 
-  const formatCurrency = (amount: number) => {
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
-    }).format(amount);
-  };
 
-  const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('en-US', {
-      weekday: 'long',
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-    });
-  };
 
   const handleDeletePress = () => {
     Alert.alert(
@@ -58,7 +45,8 @@ export const useCardDetailsScreen = () => {
     card,
     handleDelete,
     formatCurrency,
-    formatDate,
+    formatDate: formatDateLong,
+    formatISODate,
     handleDeletePress,
   };
 }; 

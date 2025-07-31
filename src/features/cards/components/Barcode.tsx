@@ -23,7 +23,7 @@ export const BarcodeComponent: React.FC<BarcodeProps> = ({
       <BarcodeCreatorView
         value={value}
         format={BarcodeFormat.CODE128}
-        background={theme.colors.card}
+        background={theme.colors.background}
         foregroundColor={theme.colors.text}
         style={{ width, height }}
       />

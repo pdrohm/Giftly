@@ -9,26 +9,13 @@ import {
 } from 'react-native';
 import { useTheme } from '../../../hooks/useTheme';
 import { GiftCard } from '../../../store/slices/cardsSlice';
+import { formatCurrency, formatDate } from '../../../utils/formatters';
 
 interface CardItemProps extends TouchableOpacityProps {
   card: GiftCard;
 }
 
-// Extract formatting functions outside component to prevent recreation
-const formatCurrency = (amount: number) => {
-  return new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-  }).format(amount);
-};
 
-const formatDate = (dateString: string) => {
-  return new Date(dateString).toLocaleDateString('en-US', {
-    month: 'short',
-    day: 'numeric',
-    year: 'numeric',
-  });
-};
 
 export const CardItem: React.FC<CardItemProps> = memo(({ card, style, ...props }) => {
   const theme = useTheme();

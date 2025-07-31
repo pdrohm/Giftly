@@ -12,7 +12,7 @@ import { useTheme } from '../../../hooks/useTheme';
 
 export const CardDetailsScreen: React.FC = () => {
   const theme = useTheme();
-  const { card, formatCurrency, formatDate, handleDeletePress } = useCardDetailsScreen();
+  const { card, formatCurrency, formatDate, formatISODate, handleDeletePress } = useCardDetailsScreen();
 
 
 
@@ -77,7 +77,7 @@ export const CardDetailsScreen: React.FC = () => {
               Added
             </Text>
             <Text style={[styles.value, { color: theme.colors.text }]}>
-              {formatDate(card.createdAt)}
+              {formatISODate(card.createdAt)}
             </Text>
           </View>
 

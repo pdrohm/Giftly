@@ -9,6 +9,7 @@ import { ScreenContainer } from '../../../components/ui/ScreenContainer';
 import { Input } from '../../../components/ui/Input';
 import { Button } from '../../../components/ui/Button';
 import { Icon } from '../../../components/ui/Icon';
+import { DateInput } from '../../../components/ui/DateInput';
 import { useAddCardScreen } from '../hooks/useAddCardScreen';
 import { useTheme } from '../../../hooks/useTheme';
 
@@ -70,13 +71,14 @@ export const AddCardScreen: React.FC = () => {
             control={control}
             name="expirationDate"
             render={({ field: { onChange, onBlur, value } }) => (
-              <Input
+              <DateInput
                 label="Expiration Date"
                 placeholder="MM/DD/YYYY"
                 value={value}
                 onChangeText={onChange}
                 onBlur={onBlur}
                 error={errors.expirationDate?.message}
+                minimumDate={new Date()}
               />
             )}
           />
