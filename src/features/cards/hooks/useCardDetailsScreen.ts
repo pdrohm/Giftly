@@ -8,6 +8,7 @@ import { RootStackParamList } from '../../../navigation/types';
 import { GiftCard } from '../../../store/slices/cardsSlice';
 import { Alert } from 'react-native';
 import { formatCurrency, formatDateLong, formatISODate } from '../../../utils/formatters';
+import { useToast } from '../../../hooks/useToast';
 
 type CardDetailsRouteProp = RouteProp<RootStackParamList, 'CardDetails'>;
 
@@ -16,16 +17,22 @@ export const useCardDetailsScreen = () => {
   const navigation = useNavigation();
   const dispatch = useAppDispatch();
   const cards = useAppSelector((state) => state.cards.cards);
+  const { showSuccess, showError } = useToast();
   
   const { cardId } = route.params;
   const card = cards.find((c: GiftCard) => c.id === cardId);
 
   const handleDelete = useCallback(() => {
-    if (card) {
-      dispatch(deleteCard(card.id));
-      navigation.goBack();
+    try {
+      if (card) {
+        dispatch(deleteCard(card.id));
+        showSuccess('Gift card deleted successfully!');
+        navigation.goBack();
+      }
+    } catch (error) {
+      showError('Failed to delete gift card. Please try again.');
     }
-  }, [card, dispatch, navigation]);
+  }, [card, dispatch, navigation, showSuccess, showError]);
 
 
 

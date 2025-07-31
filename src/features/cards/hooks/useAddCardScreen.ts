@@ -5,6 +5,7 @@ import { z } from 'zod';
 import { useAppDispatch } from '../../../hooks/useAppDispatch';
 import { addCard } from '../../../store/slices/cardsSlice';
 import { useNavigation } from '@react-navigation/native';
+import { useToast } from '../../../hooks/useToast';
 
 const addCardSchema = z.object({
   brand: z.string().min(1, 'Brand is required'),
@@ -32,6 +33,7 @@ type AddCardFormData = z.infer<typeof addCardSchema>;
 export const useAddCardScreen = () => {
   const dispatch = useAppDispatch();
   const navigation = useNavigation();
+  const { showSuccess, showError } = useToast();
 
   const {
     control,
@@ -48,16 +50,21 @@ export const useAddCardScreen = () => {
   });
 
   const onSubmit = useCallback((data: AddCardFormData) => {
-    const cardData = {
-      brand: data.brand,
-      amount: parseFloat(data.amount),
-      expirationDate: data.expirationDate,
-    };
+    try {
+      const cardData = {
+        brand: data.brand,
+        amount: parseFloat(data.amount),
+        expirationDate: data.expirationDate,
+      };
 
-    dispatch(addCard(cardData));
-    reset();
-    navigation.goBack();
-  }, [dispatch, reset, navigation]);
+      dispatch(addCard(cardData));
+      reset();
+      showSuccess('Gift card added successfully!');
+      navigation.goBack();
+    } catch (error) {
+      showError('Failed to add gift card. Please try again.');
+    }
+  }, [dispatch, reset, navigation, showSuccess, showError]);
 
   return {
     control,

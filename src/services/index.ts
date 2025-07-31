@@ -52,4 +52,5 @@ export class UserCardsService {
   }
 }
 
-export const userCardsService = new UserCardsService(); 
+export const userCardsService = new UserCardsService();
+export { toastService } from './ToastService'; 
