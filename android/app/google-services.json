@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "736641429225",
+    "project_id": "giftly-a18d7",
+    "storage_bucket": "giftly-a18d7.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:736641429225:android:6b55fbc410636c68be4a78",
+        "android_client_info": {
+          "package_name": "com.giftly.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBKvwpsBZT8QrgDtf_lLIAKU6XsqxAOi0U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
