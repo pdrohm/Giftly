@@ -41,6 +41,8 @@ export const Button: React.FC<ButtonProps> = ({
     styles[`${size}Text`],
     {
       color: disabled ? theme.colors.textSecondary : variant === 'secondary' ? theme.colors.text : '#FFFFFF',
+      fontSize: theme.typography.fontSize[size === 'small' ? 'sm' : size === 'large' ? 'lg' : 'base'],
+      fontWeight: theme.typography.fontWeight.semibold,
     },
   ];
 
@@ -80,15 +82,15 @@ const styles = StyleSheet.create({
     paddingHorizontal: 32,
   },
   text: {
-    fontWeight: '600',
+    // Font styles are now applied dynamically
   },
   smallText: {
-    fontSize: 14,
+    // Font styles are now applied dynamically
   },
   mediumText: {
-    fontSize: 16,
+    // Font styles are now applied dynamically
   },
   largeText: {
-    fontSize: 18,
+    // Font styles are now applied dynamically
   },
 }); 

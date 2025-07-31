@@ -1,7 +1,6 @@
 import React from 'react';
 import {
   View,
-  Text,
   StyleSheet,
 } from 'react-native';
 import { Controller } from 'react-hook-form';
@@ -9,6 +8,7 @@ import { ScreenContainer } from '../../../components/ui/ScreenContainer';
 import { Input } from '../../../components/ui/Input';
 import { Button } from '../../../components/ui/Button';
 import { Icon } from '../../../components/ui/Icon';
+import { H2, Body, Caption } from '../../../components/ui/Typography';
 import { useSignUpScreen } from '../hooks/useSignUpScreen';
 import { useTheme } from '../../../hooks/useTheme';
 
@@ -26,19 +26,17 @@ export const SignUpScreen: React.FC = () => {
             color={theme.colors.primary} 
             style={styles.logo}
           />
-          <Text style={[styles.title, { color: theme.colors.text }]}>
-            Create Account
-          </Text>
-          <Text style={[styles.subtitle, { color: theme.colors.textSecondary }]}>
+          <H2>Create Account</H2>
+          <Body color="textSecondary" style={styles.subtitle}>
             Sign up to start managing your gift cards
-          </Text>
+          </Body>
         </View>
 
         {authError && (
           <View style={[styles.errorContainer, { backgroundColor: theme.colors.danger + '20' }]}>
-            <Text style={[styles.errorText, { color: theme.colors.danger }]}>
+            <Caption color="danger" style={styles.errorText}>
               {authError}
-            </Text>
+            </Caption>
           </View>
         )}
 
@@ -106,9 +104,9 @@ export const SignUpScreen: React.FC = () => {
 
           <View style={styles.divider}>
             <View style={[styles.dividerLine, { backgroundColor: theme.colors.border }]} />
-            <Text style={[styles.dividerText, { color: theme.colors.textSecondary }]}>
+            <Caption color="textSecondary" style={styles.dividerText}>
               or
-            </Text>
+            </Caption>
             <View style={[styles.dividerLine, { backgroundColor: theme.colors.border }]} />
           </View>
 
@@ -131,18 +129,15 @@ const styles = StyleSheet.create({
   },
   header: {
     alignItems: 'center',
-    marginBottom: 48,
+    marginBottom: 40,
   },
   logo: {
     marginBottom: 24,
   },
   title: {
-    fontSize: 32,
-    fontWeight: '700',
     marginBottom: 8,
   },
   subtitle: {
-    fontSize: 16,
     textAlign: 'center',
   },
   errorContainer: {
@@ -151,7 +146,6 @@ const styles = StyleSheet.create({
     marginBottom: 24,
   },
   errorText: {
-    fontSize: 14,
     textAlign: 'center',
   },
   form: {
@@ -171,7 +165,6 @@ const styles = StyleSheet.create({
   },
   dividerText: {
     marginHorizontal: 16,
-    fontSize: 14,
   },
   signInButton: {
     marginTop: 8,

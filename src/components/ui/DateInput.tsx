@@ -39,8 +39,6 @@ export const DateInput: React.FC<DateInputProps> = ({
     value ? new Date(value) : null
   );
 
-
-
   const handleDateChange = (event: any, date?: Date) => {
     if (Platform.OS === 'android') {
       setShowPicker(false);
@@ -79,17 +77,38 @@ export const DateInput: React.FC<DateInputProps> = ({
         >
           <View style={styles.modalOverlay}>
             <View style={[styles.modalContent, { backgroundColor: theme.colors.card }]}>
-              <View style={styles.pickerHeader}>
+              <View style={[styles.pickerHeader, { borderBottomColor: theme.colors.border }]}>
                 <TouchableOpacity onPress={handleCancel}>
-                  <Text style={[styles.pickerButton, { color: theme.colors.primary }]}>
+                  <Text style={[
+                    styles.pickerButton, 
+                    { 
+                      color: theme.colors.primary,
+                      fontSize: theme.typography.fontSize.base,
+                      fontWeight: theme.typography.fontWeight.medium,
+                    }
+                  ]}>
                     Cancel
                   </Text>
                 </TouchableOpacity>
-                <Text style={[styles.pickerTitle, { color: theme.colors.text }]}>
+                <Text style={[
+                  styles.pickerTitle, 
+                  { 
+                    color: theme.colors.text,
+                    fontSize: theme.typography.fontSize.lg,
+                    fontWeight: theme.typography.fontWeight.semibold,
+                  }
+                ]}>
                   Select Date
                 </Text>
                 <TouchableOpacity onPress={handleConfirm}>
-                  <Text style={[styles.pickerButton, { color: theme.colors.primary }]}>
+                  <Text style={[
+                    styles.pickerButton, 
+                    { 
+                      color: theme.colors.primary,
+                      fontSize: theme.typography.fontSize.base,
+                      fontWeight: theme.typography.fontWeight.medium,
+                    }
+                  ]}>
                     Done
                   </Text>
                 </TouchableOpacity>
@@ -161,14 +180,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingVertical: 16,
     borderBottomWidth: 1,
-    borderBottomColor: '#E5E5E5',
   },
   pickerTitle: {
-    fontSize: 18,
     fontWeight: '600',
   },
   pickerButton: {
-    fontSize: 16,
     fontWeight: '500',
   },
   picker: {

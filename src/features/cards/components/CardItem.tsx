@@ -1,7 +1,6 @@
 import React, { memo } from 'react';
 import {
   View,
-  Text,
   StyleSheet,
   TouchableOpacity,
   TouchableOpacityProps,
@@ -10,12 +9,11 @@ import {
 import { useTheme } from '../../../hooks/useTheme';
 import { GiftCard } from '../../../store/slices/cardsSlice';
 import { formatCurrency, formatDate } from '../../../utils/formatters';
+import { Body2, H4 } from '../../../components/ui/Typography';
 
 interface CardItemProps extends TouchableOpacityProps {
   card: GiftCard;
 }
-
-
 
 export const CardItem: React.FC<CardItemProps> = memo(({ card, style, ...props }) => {
   const theme = useTheme();
@@ -32,17 +30,13 @@ export const CardItem: React.FC<CardItemProps> = memo(({ card, style, ...props }
   return (
     <TouchableOpacity style={cardStyle} activeOpacity={0.8} {...props}>
       <View style={styles.header}>
-        <Text style={[styles.brand, { color: theme.colors.text }]}>
-          {card.brand}
-        </Text>
-        <Text style={[styles.amount, { color: theme.colors.primary }]}>
-          {formatCurrency(card.amount)}
-        </Text>
+        <H4>{card.brand}</H4>
+        <H4 color="primary">{formatCurrency(card.amount)}</H4>
       </View>
       <View style={styles.footer}>
-        <Text style={[styles.expiration, { color: theme.colors.textSecondary }]}>
+        <Body2 color="textSecondary">
           Expires: {formatDate(card.expirationDate)}
-        </Text>
+        </Body2>
       </View>
     </TouchableOpacity>
   );
@@ -52,8 +46,8 @@ CardItem.displayName = 'CardItem';
 
 const styles = StyleSheet.create({
   card: {
-    borderRadius: 20,
-    padding: 20,
+    borderRadius: 12,
+    padding: 16,
     marginBottom: 16,
     borderWidth: 1,
     ...Platform.select({
@@ -75,12 +69,8 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   brand: {
-    fontSize: 18,
-    fontWeight: '600',
   },
   amount: {
-    fontSize: 20,
-    fontWeight: '700',
   },
   footer: {
     flexDirection: 'row',
@@ -88,6 +78,5 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   expiration: {
-    fontSize: 14,
   },
 }); 

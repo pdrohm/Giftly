@@ -1,12 +1,12 @@
 import React from 'react';
 import {
   View,
-  Text,
   StyleSheet,
   Alert,
 } from 'react-native';
 import { ScreenContainer } from '../../../components/ui/ScreenContainer';
 import { Button } from '../../../components/ui/Button';
+import { H4, Body, Caption } from '../../../components/ui/Typography';
 import { useSettingsScreen } from '../hooks/useSettingsScreen';
 import { useTheme } from '../../../hooks/useTheme';
 
@@ -29,30 +29,26 @@ export const SettingsScreen: React.FC = () => {
     <ScreenContainer>
       <View style={styles.container}>
         <View style={styles.section}>
-          <Text style={[styles.sectionTitle, { color: theme.colors.text }]}>
-            Account
-          </Text>
+          <H4 style={styles.sectionTitle}>Account</H4>
           <View style={[styles.card, { backgroundColor: theme.colors.card, borderColor: theme.colors.border }]}>
-            <Text style={[styles.label, { color: theme.colors.textSecondary }]}>
+            <Caption color="textSecondary" style={styles.label}>
               Email
-            </Text>
-            <Text style={[styles.value, { color: theme.colors.text }]}>
+            </Caption>
+            <Body style={styles.value}>
               {user?.email || 'Not available'}
-            </Text>
+            </Body>
           </View>
         </View>
 
         <View style={styles.section}>
-          <Text style={[styles.sectionTitle, { color: theme.colors.text }]}>
-            App
-          </Text>
+          <H4 style={styles.sectionTitle}>App</H4>
           <View style={[styles.card, { backgroundColor: theme.colors.card, borderColor: theme.colors.border }]}>
-            <Text style={[styles.label, { color: theme.colors.textSecondary }]}>
+            <Caption color="textSecondary" style={styles.label}>
               Version
-            </Text>
-            <Text style={[styles.value, { color: theme.colors.text }]}>
+            </Caption>
+            <Body style={styles.value}>
               {appVersion}
-            </Text>
+            </Body>
           </View>
         </View>
 
@@ -74,11 +70,9 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   section: {
-    marginBottom: 32,
+    marginBottom: 24,
   },
   sectionTitle: {
-    fontSize: 20,
-    fontWeight: '600',
     marginBottom: 16,
   },
   card: {
@@ -87,12 +81,9 @@ const styles = StyleSheet.create({
     borderWidth: 1,
   },
   label: {
-    fontSize: 14,
     marginBottom: 4,
   },
   value: {
-    fontSize: 16,
-    fontWeight: '500',
   },
   signOutButton: {
     marginTop: 16,

@@ -1,11 +1,12 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { Controller } from 'react-hook-form';
 import { ScreenContainer } from '../../../components/ui/ScreenContainer';
 import { Input } from '../../../components/ui/Input';
 import { Button } from '../../../components/ui/Button';
 import { Icon } from '../../../components/ui/Icon';
 import { DateInput } from '../../../components/ui/DateInput';
+import { H3, Body } from '../../../components/ui/Typography';
 import { useAddCardScreen } from '../hooks/useAddCardScreen';
 import { useTheme } from '../../../hooks/useTheme';
 
@@ -23,13 +24,11 @@ export const AddCardScreen: React.FC = () => {
             color={theme.colors.primary}
             style={styles.headerIcon}
           />
-          <Text style={[styles.title, { color: theme.colors.text }]}>
-            Add Gift Card
-          </Text>
+          <H3>Add Gift Card</H3>
         </View>
-        <Text style={[styles.subtitle, { color: theme.colors.textSecondary }]}>
+        <Body color="textSecondary" style={styles.subtitle}>
           Enter the details of your gift card
-        </Text>
+        </Body>
 
         <View style={styles.form}>
           <Controller
@@ -104,12 +103,9 @@ const styles = StyleSheet.create({
     marginRight: 12,
   },
   title: {
-    fontSize: 28,
-    fontWeight: '700',
   },
   subtitle: {
-    fontSize: 16,
-    marginBottom: 32,
+    marginBottom: 24,
   },
   form: {
     flex: 1,

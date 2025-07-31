@@ -1,14 +1,14 @@
 import React from 'react';
 import {
   View,
-  Text,
   StyleSheet,
+  Image,
 } from 'react-native';
 import { Controller } from 'react-hook-form';
 import { ScreenContainer } from '../../../components/ui/ScreenContainer';
 import { Input } from '../../../components/ui/Input';
 import { Button } from '../../../components/ui/Button';
-import { Icon } from '../../../components/ui/Icon';
+import { H2, Body, Caption } from '../../../components/ui/Typography';
 import { useSignInScreen } from '../hooks/useSignInScreen';
 import { useTheme } from '../../../hooks/useTheme';
 
@@ -20,25 +20,22 @@ export const SignInScreen: React.FC = () => {
     <ScreenContainer>
       <View style={styles.container}>
         <View style={styles.header}>
-          <Icon 
-            name="account-balance-wallet" 
-            size={48} 
-            color={theme.colors.primary} 
+          <Image 
+            source={require('../../../assets/icon.png')}
             style={styles.logo}
+            resizeMode="contain"
           />
-          <Text style={[styles.title, { color: theme.colors.text }]}>
-            Welcome Back
-          </Text>
-          <Text style={[styles.subtitle, { color: theme.colors.textSecondary }]}>
+          <H2>Welcome Back</H2>
+          <Body color="textSecondary" style={styles.subtitle}>
             Sign in to access your gift cards
-          </Text>
+          </Body>
         </View>
 
         {authError && (
           <View style={[styles.errorContainer, { backgroundColor: theme.colors.danger + '20' }]}>
-            <Text style={[styles.errorText, { color: theme.colors.danger }]}>
+            <Caption color="danger" style={styles.errorText}>
               {authError}
-            </Text>
+            </Caption>
           </View>
         )}
 
@@ -88,9 +85,9 @@ export const SignInScreen: React.FC = () => {
 
           <View style={styles.divider}>
             <View style={[styles.dividerLine, { backgroundColor: theme.colors.border }]} />
-            <Text style={[styles.dividerText, { color: theme.colors.textSecondary }]}>
+            <Caption color="textSecondary" style={styles.dividerText}>
               or
-            </Text>
+            </Caption>
             <View style={[styles.dividerLine, { backgroundColor: theme.colors.border }]} />
           </View>
 
@@ -113,18 +110,17 @@ const styles = StyleSheet.create({
   },
   header: {
     alignItems: 'center',
-    marginBottom: 48,
+    marginBottom: 40,
   },
   logo: {
-    marginBottom: 24,
+    width: 200,
+    height: 200,
+    marginBottom: 12,
   },
   title: {
-    fontSize: 32,
-    fontWeight: '700',
     marginBottom: 8,
   },
   subtitle: {
-    fontSize: 16,
     textAlign: 'center',
   },
   errorContainer: {
@@ -133,7 +129,6 @@ const styles = StyleSheet.create({
     marginBottom: 24,
   },
   errorText: {
-    fontSize: 14,
     textAlign: 'center',
   },
   form: {
@@ -153,7 +148,6 @@ const styles = StyleSheet.create({
   },
   dividerText: {
     marginHorizontal: 16,
-    fontSize: 14,
   },
   signUpButton: {
     marginTop: 8,

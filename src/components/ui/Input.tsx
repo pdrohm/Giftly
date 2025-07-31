@@ -32,6 +32,7 @@ export const Input: React.FC<InputProps> = ({
       backgroundColor: theme.colors.card,
       borderColor: error ? theme.colors.danger : theme.colors.border,
       color: theme.colors.text,
+      fontSize: theme.typography.fontSize.base,
     },
     rightIcon && styles.inputWithIcon,
     style,
@@ -40,7 +41,14 @@ export const Input: React.FC<InputProps> = ({
   return (
     <View style={styles.container}>
       {label && (
-        <Text style={[styles.label, { color: theme.colors.text }]}>
+        <Text style={[
+          styles.label, 
+          { 
+            color: theme.colors.text,
+            fontSize: theme.typography.fontSize.sm,
+            fontWeight: theme.typography.fontWeight.medium,
+          }
+        ]}>
           {label}
         </Text>
       )}
@@ -60,7 +68,10 @@ export const Input: React.FC<InputProps> = ({
         <Text
           style={[
             styles.helper,
-            { color: error ? theme.colors.danger : theme.colors.textSecondary },
+            { 
+              color: error ? theme.colors.danger : theme.colors.textSecondary,
+              fontSize: theme.typography.fontSize.xs,
+            },
           ]}
         >
           {error || helper}
@@ -75,8 +86,6 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   label: {
-    fontSize: 14,
-    fontWeight: '500',
     marginBottom: 8,
   },
   inputContainer: {
@@ -87,7 +96,6 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 12,
     paddingHorizontal: 16,
-    fontSize: 16,
   },
   inputWithIcon: {
     paddingRight: 48,
@@ -98,7 +106,6 @@ const styles = StyleSheet.create({
     top: 14,
   },
   helper: {
-    fontSize: 12,
     marginTop: 4,
   },
 }); 

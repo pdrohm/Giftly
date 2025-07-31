@@ -1,8 +1,9 @@
 import React, { useCallback } from 'react';
-import { View, Text, FlatList, StyleSheet } from 'react-native';
+import { View, FlatList, StyleSheet } from 'react-native';
 import { ScreenContainer } from '../../../components/ui/ScreenContainer';
 import { CardItem } from '../components/CardItem';
 import { Icon } from '../../../components/ui/Icon';
+import { H3, H4, Body } from '../../../components/ui/Typography';
 import { useMyCardsScreen } from '../hooks/useMyCardsScreen';
 import { useTheme } from '../../../hooks/useTheme';
 
@@ -33,28 +34,22 @@ export const MyCardsScreen: React.FC = () => {
           color={theme.colors.textSecondary}
           style={styles.emptyIcon}
         />
-        <Text style={[styles.emptyTitle, { color: theme.colors.text }]}>
-          No gift cards yet
-        </Text>
-        <Text
-          style={[styles.emptySubtitle, { color: theme.colors.textSecondary }]}
-        >
+        <H4 style={styles.emptyTitle}>No gift cards yet</H4>
+        <Body color="textSecondary" style={styles.emptySubtitle}>
           Add your first gift card to get started
-        </Text>
+        </Body>
       </View>
     ),
-    [theme.colors.text, theme.colors.textSecondary],
+    [theme.colors.textSecondary],
   );
 
   return (
     <ScreenContainer>
       <View style={styles.header}>
-        <Text style={[styles.title, { color: theme.colors.text }]}>
-          My Gift Cards
-        </Text>
-        <Text style={[styles.totalValue, { color: theme.colors.primary }]}>
+        <H3>My Gift Cards</H3>
+        <H4 color="primary" style={styles.totalValue}>
           {formattedTotalValue}
-        </Text>
+        </H4>
       </View>
 
       <FlatList
@@ -84,13 +79,9 @@ const styles = StyleSheet.create({
     marginBottom: 24,
   },
   title: {
-    fontSize: 28,
-    fontWeight: '700',
     marginBottom: 8,
   },
   totalValue: {
-    fontSize: 24,
-    fontWeight: '600',
   },
   listContainer: {
     flexGrow: 1,
@@ -99,15 +90,12 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    paddingVertical: 64,
+    paddingVertical: 56,
   },
   emptyTitle: {
-    fontSize: 20,
-    fontWeight: '600',
     marginBottom: 8,
   },
   emptySubtitle: {
-    fontSize: 16,
     textAlign: 'center',
   },
   emptyIcon: {

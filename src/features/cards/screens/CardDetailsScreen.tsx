@@ -1,8 +1,9 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { ScreenContainer } from '../../../components/ui/ScreenContainer';
 import { Button } from '../../../components/ui/Button';
 import { BarcodeComponent } from '../components/Barcode';
+import { H3, H4, Body } from '../../../components/ui/Typography';
 import { useCardDetailsScreen } from '../hooks/useCardDetailsScreen';
 import { useTheme } from '../../../hooks/useTheme';
 
@@ -15,9 +16,7 @@ export const CardDetailsScreen: React.FC = () => {
     return (
       <ScreenContainer>
         <View style={styles.errorContainer}>
-          <Text style={[styles.errorText, { color: theme.colors.text }]}>
-            Card not found
-          </Text>
+          <Body style={styles.errorText}>Card not found</Body>
         </View>
       </ScreenContainer>
     );
@@ -36,50 +35,30 @@ export const CardDetailsScreen: React.FC = () => {
           ]}
         >
           <View style={styles.header}>
-            <Text style={[styles.brand, { color: theme.colors.text }]}>
-              {card.brand}
-            </Text>
-            <Text style={[styles.amount, { color: theme.colors.primary }]}>
-              {formatCurrency(card.amount)}
-            </Text>
+            <H3>{card.brand}</H3>
+            <H4 color="primary">{formatCurrency(card.amount)}</H4>
           </View>
         </View>
 
         <View style={styles.details}>
           <View style={styles.detailRow}>
-            <Text style={[styles.label, { color: theme.colors.textSecondary }]}>
-              Brand
-            </Text>
-            <Text style={[styles.value, { color: theme.colors.text }]}>
-              {card.brand}
-            </Text>
+            <Body color="textSecondary">Brand</Body>
+            <Body>{card.brand}</Body>
           </View>
 
           <View style={styles.detailRow}>
-            <Text style={[styles.label, { color: theme.colors.textSecondary }]}>
-              Amount
-            </Text>
-            <Text style={[styles.value, { color: theme.colors.text }]}>
-              {formatCurrency(card.amount)}
-            </Text>
+            <Body color="textSecondary">Amount</Body>
+            <Body>{formatCurrency(card.amount)}</Body>
           </View>
 
           <View style={styles.detailRow}>
-            <Text style={[styles.label, { color: theme.colors.textSecondary }]}>
-              Expiration Date
-            </Text>
-            <Text style={[styles.value, { color: theme.colors.text }]}>
-              {formatDate(card.expirationDate)}
-            </Text>
+            <Body color="textSecondary">Expiration Date</Body>
+            <Body>{formatDate(card.expirationDate)}</Body>
           </View>
 
           <View style={styles.detailRow}>
-            <Text style={[styles.label, { color: theme.colors.textSecondary }]}>
-              Added
-            </Text>
-            <Text style={[styles.value, { color: theme.colors.text }]}>
-              {formatISODate(card.createdAt)}
-            </Text>
+            <Body color="textSecondary">Added</Body>
+            <Body>{formatISODate(card.createdAt)}</Body>
           </View>
         </View>
         <BarcodeComponent
@@ -108,9 +87,9 @@ const styles = StyleSheet.create({
     marginBottom: 24,
   },
   card: {
-    borderRadius: 20,
-    padding: 24,
-    marginBottom: 32,
+    borderRadius: 12,
+    padding: 16,
+    marginBottom: 24,
     borderWidth: 1,
   },
   header: {
@@ -119,12 +98,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   brand: {
-    fontSize: 24,
-    fontWeight: '700',
   },
   amount: {
-    fontSize: 28,
-    fontWeight: '700',
   },
   details: {
     flex: 1,
@@ -138,15 +113,11 @@ const styles = StyleSheet.create({
     borderBottomColor: 'rgba(255, 255, 255, 0.1)',
   },
   label: {
-    fontSize: 16,
-    fontWeight: '500',
   },
   value: {
-    fontSize: 16,
-    fontWeight: '600',
   },
   deleteButton: {
-    marginTop: 32,
+    marginTop: 24,
   },
   errorContainer: {
     flex: 1,
@@ -154,7 +125,5 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   errorText: {
-    fontSize: 18,
-    fontWeight: '500',
   },
 });
