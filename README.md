@@ -4,6 +4,17 @@
 
 Watch a quick demo of Giftly: [https://youtube.com/shorts/SzoFKCVmS9I?feature=share](https://youtube.com/shorts/SzoFKCVmS9I?feature=share)
 
+## 📱 App Overview & Screenshots
+
+📄 **Complete App Overview**: [View detailed overview with screenshots](https://drive.google.com/file/d/1ZpuyiFRumahNnvC3QDRXEjyvvMwIdvJt/view?usp=sharing)
+
+This PDF provides a comprehensive overview of Giftly with detailed screenshots showing:
+- **Authentication Flow**: Sign in and sign up screens
+- **Main Features**: My Cards, Add Card, and Settings screens
+- **Card Management**: Adding, viewing, and managing gift cards
+- **Theme Support**: Dark and light mode examples
+- **User Experience**: Complete user journey through the app
+
 ## Overview
 
 Giftly is a React Native app built with TypeScript that allows users to store, view, and manage gift cards offline. The app features a modern, themeable UI with dark/light mode support.
