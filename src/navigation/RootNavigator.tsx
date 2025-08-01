@@ -6,11 +6,11 @@ import { useAppDispatch } from '../hooks/useAppDispatch';
 import { useAppSelector } from '../hooks/useAppSelector';
 import { setUser } from '../store/slices/authSlice';
 import { useUserCards } from '../hooks/useUserCards';
+import { useTheme } from '../hooks/useTheme';
 import { MainTabNavigator } from './MainTabNavigator';
 import { CardDetailsScreen } from '../features/cards/screens/CardDetailsScreen';
 import { AuthNavigator } from './AuthNavigator';
 import { RootStackParamList } from './types';
-import { colors } from '@/theme';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -18,6 +18,7 @@ export const RootNavigator: React.FC = () => {
   const dispatch = useAppDispatch();
   const user = useAppSelector((state) => state.auth.user);
   const [initializing, setInitializing] = useState(true);
+  const theme = useTheme();
 
   useUserCards();
 
@@ -50,22 +51,22 @@ export const RootNavigator: React.FC = () => {
         }}
       >
         {user ? (
-          <>
+          <React.Fragment>
             <Stack.Screen name="Main" component={MainTabNavigator} />
             <Stack.Screen 
               name="CardDetails" 
               component={CardDetailsScreen}
-              options={{
+              options={({ route: _route }) => ({
                 headerShown: true,
                 title: 'Card Details',
                 headerBackTitle: 'List',
-                headerTintColor: colors.dark.text,
+                headerTintColor: theme.colors.text,
                 headerStyle: {
-                  backgroundColor: colors.dark.background,
+                  backgroundColor: theme.colors.background,
                 },
-              }}
+              })}
             />
-          </>
+          </React.Fragment>
         ) : (
           <Stack.Screen name="Auth" component={AuthNavigator} />
         )}

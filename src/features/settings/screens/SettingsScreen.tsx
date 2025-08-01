@@ -27,7 +27,7 @@ export const SettingsScreen: React.FC = () => {
   };
 
   return (
-    <ScreenContainer>
+    <ScreenContainer scrollable>
       <View style={styles.container}>
       
         <View style={styles.section}>

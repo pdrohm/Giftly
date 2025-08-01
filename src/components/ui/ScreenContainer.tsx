@@ -8,7 +8,6 @@ import {
   ScrollViewProps,
 } from 'react-native';
 import { useTheme } from '../../hooks/useTheme';
-import { colors } from '@/theme';
 
 interface ScreenContainerProps extends ViewProps {
   scrollable?: boolean;
@@ -48,9 +47,16 @@ export const ScreenContainer: React.FC<ScreenContainerProps> = ({
     style,
   ];
 
+  const safeAreaStyle = [
+    styles.safeArea,
+    {
+      backgroundColor: theme.colors.background,
+    },
+  ];
+
   if (scrollable) {
     return (
-      <SafeAreaView style={styles.safeArea}>
+      <SafeAreaView style={safeAreaStyle}>
         <ScrollView
           style={styles.scrollView}
           contentContainerStyle={containerStyle}
@@ -64,7 +70,7 @@ export const ScreenContainer: React.FC<ScreenContainerProps> = ({
   }
 
   return (
-    <SafeAreaView style={styles.safeArea}>
+    <SafeAreaView style={safeAreaStyle}>
       <View style={containerStyle} {...props}>
         {children}
       </View>
@@ -75,7 +81,6 @@ export const ScreenContainer: React.FC<ScreenContainerProps> = ({
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: colors.dark.background,
   },
   container: {
     flex: 1,
