@@ -8,7 +8,7 @@
 
     <!-- Launch screen theme -->
     <style name="LaunchTheme" parent="AppTheme">
-        <item name="android:windowBackground">@layout/launch_screen</item>
+        <item name="android:windowBackground">@drawable/launch_screen</item>
     </style>
 
 </resources>
