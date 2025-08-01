@@ -7,6 +7,7 @@ import {
 import { ScreenContainer } from '../../../components/ui/ScreenContainer';
 import { Button } from '../../../components/ui/Button';
 import { H4, Body, Caption } from '../../../components/ui/Typography';
+import { ThemeToggle } from '../../../components/ui/ThemeToggle';
 import { useSettingsScreen } from '../hooks/useSettingsScreen';
 import { useTheme } from '../../../hooks/useTheme';
 
@@ -28,6 +29,7 @@ export const SettingsScreen: React.FC = () => {
   return (
     <ScreenContainer>
       <View style={styles.container}>
+      
         <View style={styles.section}>
           <H4 style={styles.sectionTitle}>Account</H4>
           <View style={[styles.card, { backgroundColor: theme.colors.card, borderColor: theme.colors.border }]}>
@@ -39,6 +41,14 @@ export const SettingsScreen: React.FC = () => {
             </Body>
           </View>
         </View>
+
+          <View style={styles.section}>
+          <H4 style={styles.sectionTitle}>Appearance</H4>
+          <View style={[styles.card, { backgroundColor: theme.colors.card, borderColor: theme.colors.border }]}>
+            <ThemeToggle />
+          </View>
+        </View>
+
 
         <View style={styles.section}>
           <H4 style={styles.sectionTitle}>App</H4>
