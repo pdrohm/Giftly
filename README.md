@@ -1,5 +1,9 @@
 # Gift Card Wallet - Architecture Documentation
 
+## 🎥 Quick Demo
+
+Watch a quick demo of Giftly: [https://youtube.com/shorts/SzoFKCVmS9I?feature=share](https://youtube.com/shorts/SzoFKCVmS9I?feature=share)
+
 ## Overview
 
 This is a React Native app built with TypeScript that allows users to store, view, and manage gift cards offline. The app features a dark-themed, modern UI.
