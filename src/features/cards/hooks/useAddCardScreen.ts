@@ -10,9 +10,10 @@ import { useToast } from '../../../hooks/useToast';
 const addCardSchema = z.object({
   brand: z.string().min(1, 'Brand is required'),
   amount: z.string().min(1, 'Amount is required').refine((val) => {
-    const num = parseFloat(val);
+    const normalizedVal = val.replace(',', '.');
+    const num = parseFloat(normalizedVal);
     return !isNaN(num) && num > 0;
-  }, 'Amount must be a positive number'),
+  }, 'Amount must be a positive number (e.g., 0.50, 1,50, 5.00)'),
   expirationDate: z.string().min(1, 'Expiration date is required').refine((val) => {
     const dateRegex = /^(0[1-9]|1[0-2])\/(0[1-9]|[12]\d|3[01])\/\d{4}$/;
     if (!dateRegex.test(val)) {
@@ -51,9 +52,10 @@ export const useAddCardScreen = () => {
 
   const onSubmit = useCallback((data: AddCardFormData) => {
     try {
+      const normalizedAmount = data.amount.replace(',', '.');
       const cardData = {
         brand: data.brand,
-        amount: parseFloat(data.amount),
+        amount: parseFloat(normalizedAmount),
         expirationDate: data.expirationDate,
       };
 

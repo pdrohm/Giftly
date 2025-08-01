@@ -52,7 +52,7 @@ export const AddCardScreen: React.FC = () => {
             render={({ field: { onChange, onBlur, value } }) => (
               <Input
                 label="Amount"
-                placeholder="0.00"
+                placeholder="0.00 or 0,00"
                 value={value}
                 onChangeText={onChange}
                 onBlur={onBlur}

@@ -121,6 +121,8 @@ export const DateInput: React.FC<DateInputProps> = ({
                 minimumDate={minimumDate}
                 maximumDate={maximumDate}
                 style={styles.picker}
+                textColor={theme.colors.text}
+                accentColor={theme.colors.primary}
               />
             </View>
           </View>
