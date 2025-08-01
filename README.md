@@ -173,6 +173,28 @@ __tests__/
 4. Run Android: `npm run android`
 5. Run tests: `npm test`
 
+## Testing
+
+The project includes comprehensive testing with Jest for unit tests and Detox for end-to-end testing.
+
+### Unit and Component Tests
+```bash
+npm test                    # Run all tests
+npm run test:watch         # Run tests in watch mode
+npm run test:coverage      # Run tests with coverage report
+npm run test:ci           # Run tests for CI
+```
+
+### End-to-End Tests
+```bash
+npm run e2e:build:android # Build Android app for e2e testing
+npm run e2e:test:android  # Run e2e tests on Android
+npm run e2e:build:ios     # Build iOS app for e2e testing
+npm run e2e:test:ios      # Run e2e tests on iOS
+```
+
+For detailed testing information, see [TESTING.md](./TESTING.md).
+
 ## Future Enhancements
 
 1. **Cloud Sync**: Firebase Firestore integration

@@ -1,0 +1,19 @@
+{
+  "setupFilesAfterEnv": ["./init.js"],
+  "testEnvironment": "node",
+  "testTimeout": 120000,
+  "reporters": ["detox/runners/jest/reporter"],
+  "verbose": true,
+  "testMatch": ["**/*.e2e.ts", "**/*.e2e.js"],
+  "transform": {
+    "^.+\\.(ts|tsx)$": "ts-jest"
+  },
+  "moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json"],
+  "preset": "ts-jest",
+  "globals": {
+    "ts-jest": {
+      "tsconfig": "tsconfig.json"
+    }
+  },
+  "testRunner": "jest-circus/runner"
+} 

@@ -48,6 +48,7 @@ export const Button: React.FC<ButtonProps> = ({
 
   return (
     <TouchableOpacity
+      testID="button"
       style={buttonStyle}
       disabled={disabled || loading}
       activeOpacity={0.8}
